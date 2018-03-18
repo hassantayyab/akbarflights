@@ -7,7 +7,7 @@ const initialState = {
   payload: [],
   error: ""
 }
-var x = ['first'];
+var x = [];
 var y = [];
 
 export default function(state=initialState,action) {
@@ -38,13 +38,13 @@ export default function(state=initialState,action) {
 		case 'USER_SUBMITTED':
       // console.log("LOGGGG:",action.num,initialState.num);
       if(initialState.num===action.num) {
-        x.push(action.payload);
+				x.push(action.payload);				
   			const submit = Object.assign({}, state, {
   				status: action.status,
   				payload: x
   			})
   			console.log('com of assignment1:',x);
-  			axios.post('api/ninjas',{ident:1,com:x/*num:action.num*/}).catch(function (err) {
+  			axios.post('api/ninjas',{ident:1,com:x,num:action.num}).catch(function (err) {
   				console.log('Error');
   			});
   			return submit;

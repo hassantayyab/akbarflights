@@ -7,7 +7,7 @@ const initialState = {
   payload: [],
   error: ""
 }
-var x = ['sec'];
+var x = [];
 var y = [];
 
 export default function(state=initialState,action) {
@@ -44,7 +44,7 @@ export default function(state=initialState,action) {
   				payload: x
   			})
   			console.log('com of assignment2:',x);
-  			axios.post('api/ninjas',{ident:1,com:x/*num:action.num*/}).catch(function (err) {
+  			axios.post('api/ninjas',{ident:1,com:x,num:action.num}).catch(function (err) {
   				console.log('Error');
   			});
   			return submit;

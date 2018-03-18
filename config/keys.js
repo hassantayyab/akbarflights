@@ -1,14 +1,6 @@
-// add this file to .gitignore
-
-module.exports = {
-  google: {
-    clientID: "430821155576-k6ucokf4gvqoqhng93c47q77jjsnm5gj.apps.googleusercontent.com",
-    clientSecret: "6CTPjPVpi3WmkEERH_AMHsFJ"
-  },
-  mongodb: {
-    dbURI: "mongodb://localhost/grader"
-  },
-  session: {
-    cookieKey: "thenetninjaisawesomeiguess"
-  }
-};
+// choose to return either production or development keys
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./prod_keys');
+} else {
+  module.exports = require('./dev_keys');
+}

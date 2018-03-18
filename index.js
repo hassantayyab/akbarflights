@@ -4,28 +4,34 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const apiRoutes = require('./routes/api');
 const authRoutes = require('./routes/auth-routes');
 const coursesRoutes = require('./routes/courses-routes');
-const passportSetup = require('./config/passport-setup');
+require('./config/passport-setup');
 const keys = require('./config/keys');
 
 // set up express app
 const app = express();
 
 // set view engine
-app.set('view engine', 'js');
+app.set('view engine', 'jsx');
 
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // connect to mongoDB
 mongoose
-  .connect('mongodb://localhost/grader', {
+  .connect(keys.mongodb.mLabURI, {
     useMongoClient: true
     /* other options */
   })
   .then(() => console.log('connected to MongoDB...'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
+// Use following to use local mongodb Database
 //mongoose.connect(keys.mongodb.dbURI, () => {
+//console.log('');
+//});
+// and following for mLab
+//mongoose.connect(keys.mongodb.mLabURI, () => {
 //console.log('');
 //});
 
@@ -38,7 +44,7 @@ app.use(bodyParser.json());
 // set up session cookies
 app.use(
   cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [keys.session.cookieKey]
   })
 );
@@ -47,16 +53,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// initialize api route
-app.use('/api', require('./routes/api'));
+// initialize routes
+app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
-//app.use('/courses', coursesRoutes);
+// app.use('/', coursesRoutes);
 
 // error handling middleWare
-app.use(function(err, req, res, next) {
-  //console.log('err');
-  res.status(422).send({ error: err.message });
-});
+// app.use(function(err, req, res, next) {
+//   //console.log('err');
+//   res.status(422).send({ error: err.message });
+// });
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));

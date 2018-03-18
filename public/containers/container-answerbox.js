@@ -7,15 +7,11 @@ import Popup from "./container-popup";
 import { submit } from "../actions/submit";
 import { deleteComment } from "../actions/delete";
 import { FetchSuccess, FetchRequest, FetchFailure } from "../actions/fetch";
-import {
-  AnswerFetchSuccess,
-  AnswerFetchRequest,
-  AnswerFetchFailure
-} from "../actions/fetchAnswer";
+import { AnswerFetchSuccess, AnswerFetchRequest, AnswerFetchFailure } from "../actions/fetchAnswer";
 
 var count = 0;
 var n = 1;
-var n2 = "first";
+// var n2 = "first";
 var numb = 1;
 var id = 1;
 
@@ -38,7 +34,7 @@ class AnswerBox extends Component {
       .get("/api/answer" + "/" + n + "/" + id)
       .then(res => {
         var answer = res.data.answer;
-        //console.log('in api RequestA:',answer);
+        console.log('in api RequestA:',answer);
         if (answer) {
           numb = res.data.numb;
           this.setState({ value: answer });
@@ -50,7 +46,7 @@ class AnswerBox extends Component {
       });
 
     axios
-      .get("/api/ninjas" + "/" + n2)
+      .get("/api/ninjas" + "/" + n)
       .then(res => {
         var comments = res.data;
         console.log("in api Request:", comments);
@@ -73,7 +69,7 @@ class AnswerBox extends Component {
 
   getList() {
     if (this.props.comments.status != "error") {
-      var comments = this.props.comments.payload.slice(1);
+      var comments = this.props.comments.payload;
       count = comments.length;
       console.log("in getList:", comments);
       var list = comments.map((comment, index) => {

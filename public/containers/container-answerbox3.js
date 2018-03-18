@@ -11,7 +11,7 @@ import {AnswerFetchSuccess,AnswerFetchRequest,AnswerFetchFailure} from '../actio
 
 var count = 0;
 var n = 3;
-var n2 = 'third';
+// var n2 = 'third';
 var numb = 1;
 var id = 1;
 
@@ -44,7 +44,7 @@ class AnswerBox extends Component {
  			console.log('In axios.getA:',e);
  	  });
 
-	 axios.get('/api/ninjas'+'/'+n2)
+	 axios.get('/api/ninjas'+'/'+n)
 	  .then(res => {
 			var comments = res.data;
 			console.log('in api Request:',comments);
@@ -67,7 +67,7 @@ class AnswerBox extends Component {
 	
 	getList() {
 		if (this.props.comments.status!='error') {
-			var comments = this.props.comments.payload.slice(1)
+			var comments = this.props.comments.payload
 			count = comments.length
 			console.log('in getList:',comments);
 			var list = comments.map((comment,index) => {

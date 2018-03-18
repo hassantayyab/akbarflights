@@ -29172,7 +29172,7 @@ exports.default = function () {
           payload: x
         });
         console.log('com of assignment1:', x);
-        _axios2.default.post('api/ninjas', { ident: 1, com: x /*num:action.num*/ }).catch(function (err) {
+        _axios2.default.post('api/ninjas', { ident: 1, com: x, num: action.num }).catch(function (err) {
           console.log('Error');
         });
         return submit;
@@ -29200,7 +29200,7 @@ var initialState = {
   payload: [],
   error: ""
 };
-var x = ['first'];
+var x = [];
 var y = [];
 
 /***/ }),
@@ -29251,7 +29251,7 @@ exports.default = function () {
           payload: x
         });
         console.log('com of assignment2:', x);
-        _axios2.default.post('api/ninjas', { ident: 1, com: x /*num:action.num*/ }).catch(function (err) {
+        _axios2.default.post('api/ninjas', { ident: 1, com: x, num: action.num }).catch(function (err) {
           console.log('Error');
         });
         return submit;
@@ -29279,7 +29279,7 @@ var initialState = {
   payload: [],
   error: ""
 };
-var x = ['sec'];
+var x = [];
 var y = [];
 
 /***/ }),
@@ -29329,8 +29329,8 @@ exports.default = function () {
           status: action.status,
           payload: x
         });
-        console.log('com of assignment2:', x);
-        _axios2.default.post('api/ninjas', { ident: 1, com: x /*num:action.num*/ }).catch(function (err) {
+        console.log('com of assignment3:', x);
+        _axios2.default.post('api/ninjas', { ident: 1, com: x, num: action.num }).catch(function (err) {
           console.log('Error');
         });
         return submit;
@@ -29358,7 +29358,7 @@ var initialState = {
   payload: [],
   error: ""
 };
-var x = ['third'];
+var x = [];
 var y = [];
 
 /***/ }),
@@ -29409,7 +29409,7 @@ exports.default = function () {
           payload: x
         });
         console.log('com of assignment2:', x);
-        _axios2.default.post('api/ninjas', { ident: 1, com: x /*num:action.num*/ }).catch(function (err) {
+        _axios2.default.post('api/ninjas', { ident: 1, com: x, num: action.num }).catch(function (err) {
           console.log('Error');
         });
         return submit;
@@ -29437,7 +29437,7 @@ var initialState = {
   payload: [],
   error: ""
 };
-var x = ['four'];
+var x = [];
 var y = [];
 
 /***/ }),
@@ -32800,7 +32800,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var count = 0;
 var n = 1;
-var n2 = "first";
+// var n2 = "first";
 var numb = 1;
 var id = 1;
 
@@ -32833,7 +32833,7 @@ var AnswerBox = function (_Component) {
 
       _axios2.default.get("/api/answer" + "/" + n + "/" + id).then(function (res) {
         var answer = res.data.answer;
-        //console.log('in api RequestA:',answer);
+        console.log('in api RequestA:', answer);
         if (answer) {
           numb = res.data.numb;
           _this2.setState({ value: answer });
@@ -32843,7 +32843,7 @@ var AnswerBox = function (_Component) {
         console.log("In axios.getA:", e);
       });
 
-      _axios2.default.get("/api/ninjas" + "/" + n2).then(function (res) {
+      _axios2.default.get("/api/ninjas" + "/" + n).then(function (res) {
         var comments = res.data;
         console.log("in api Request:", comments);
         count = comments.length;
@@ -32868,7 +32868,7 @@ var AnswerBox = function (_Component) {
     key: "getList",
     value: function getList() {
       if (this.props.comments.status != "error") {
-        var comments = this.props.comments.payload.slice(1);
+        var comments = this.props.comments.payload;
         count = comments.length;
         console.log("in getList:", comments);
         var list = comments.map(function (comment, index) {
@@ -33111,7 +33111,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var count = 0;
 var n = 2;
-var n2 = 'sec';
+// var n2 = 'sec';
 var numb = 1;
 var id = 1;
 
@@ -33154,7 +33154,7 @@ var AnswerBox = function (_Component) {
 				console.log('In axios.getA:', e);
 			});
 
-			_axios2.default.get('/api/ninjas' + '/' + n2).then(function (res) {
+			_axios2.default.get('/api/ninjas' + '/' + n).then(function (res) {
 				var comments = res.data;
 				console.log('in api Request:', comments);
 				count = comments.length;
@@ -33179,7 +33179,7 @@ var AnswerBox = function (_Component) {
 		key: 'getList',
 		value: function getList() {
 			if (this.props.comments.status != 'error') {
-				var comments = this.props.comments.payload.slice(1);
+				var comments = this.props.comments.payload;
 				count = comments.length;
 				console.log('in getList:', comments);
 				var list = comments.map(function (comment, index) {
@@ -33430,7 +33430,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var count = 0;
 var n = 3;
-var n2 = 'third';
+// var n2 = 'third';
 var numb = 1;
 var id = 1;
 
@@ -33473,7 +33473,7 @@ var AnswerBox = function (_Component) {
 				console.log('In axios.getA:', e);
 			});
 
-			_axios2.default.get('/api/ninjas' + '/' + n2).then(function (res) {
+			_axios2.default.get('/api/ninjas' + '/' + n).then(function (res) {
 				var comments = res.data;
 				console.log('in api Request:', comments);
 				count = comments.length;
@@ -33498,7 +33498,7 @@ var AnswerBox = function (_Component) {
 		key: 'getList',
 		value: function getList() {
 			if (this.props.comments.status != 'error') {
-				var comments = this.props.comments.payload.slice(1);
+				var comments = this.props.comments.payload;
 				count = comments.length;
 				console.log('in getList:', comments);
 				var list = comments.map(function (comment, index) {
@@ -33747,7 +33747,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var count = 0;
 var n = 4;
-var n2 = 'four';
+// var n2 = 'four';
 var numb = 1;
 var id = 1;
 
@@ -33780,7 +33780,7 @@ var AnswerBox = function (_Component) {
 
 			_axios2.default.get('/api/answer' + '/' + n + '/' + id).then(function (res) {
 				var answer = res.data.answer;
-				// 	console.log('in api RequestA:',answer);
+				console.log('in api RequestA:', answer);
 				if (answer) {
 					numb = res.data.numb;
 					_this2.setState({ value: answer });
@@ -33790,9 +33790,9 @@ var AnswerBox = function (_Component) {
 				console.log('In axios.getA:', e);
 			});
 
-			_axios2.default.get('/api/ninjas' + '/' + n2).then(function (res) {
+			_axios2.default.get('/api/ninjas' + '/' + n).then(function (res) {
 				var comments = res.data;
-				console.log('in api Request:', comments);
+				// console.log('in api Request:',comments);
 				count = comments.length;
 				_this2.props.FetchSuccess(comments, n, id);
 			}).catch(function (e) {
@@ -33815,7 +33815,7 @@ var AnswerBox = function (_Component) {
 		key: 'getList',
 		value: function getList() {
 			if (this.props.comments.status != 'error') {
-				var comments = this.props.comments.payload.slice(1);
+				var comments = this.props.comments.payload;
 				count = comments.length;
 				console.log('in getList:', comments);
 				var list = comments.map(function (comment, index) {

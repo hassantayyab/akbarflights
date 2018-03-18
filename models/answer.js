@@ -3,25 +3,18 @@ const Schema = mongoose.Schema;
 
 // Create a Schema and a Model
 const AnswerSchema = new Schema({
-    ident: Number,
-    num: Number,
-    data1:{
-      numb: Number,
-      answer: String
-    },
-    data2:{
-      numb: Number,
-      answer: String
-    },
-    data3:{
-      numb: Number,
-      answer: String
-    },
-    data4:{
+  id: Number,
+  data: [
+    {
+      num: Number,
       numb: Number,
       answer: String
     }
+  ]
 });
+
+// mujhy woh wale array mein se dictionary do jis mein
+// given num value hai
 
 const AnswerDB = mongoose.model('answerdb', AnswerSchema);
 
