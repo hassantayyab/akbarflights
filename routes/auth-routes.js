@@ -10,6 +10,7 @@ const passport = require('passport');
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
+  // req.send(req.user);
 });
 
 // auth with google+
@@ -26,6 +27,12 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   // res.send(req.user);
   res.redirect('/courses');
   // res.render('courses', { user: req.user });
+});
+
+// auth login
+router.get('/current_user', (req, res) => {
+  // console.log('in .get current_user');
+  res.send(req.user);
 });
 
 module.exports = router;

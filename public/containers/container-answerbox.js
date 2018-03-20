@@ -62,7 +62,7 @@ class AnswerBox extends Component {
     this.props.AnswerFetchRequest();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.apiRequest();
     this.dispatchFetchRequest();
   }

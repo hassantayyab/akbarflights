@@ -9,7 +9,7 @@ import CommentBox from '../containers/container-commentBox';
 const layout = () => (
 	<div>
 		<Title />
-		<AnswerDescription />
+		{/* <AnswerDescription /> */}
 		<AnswerBox />
 	</div>
 );

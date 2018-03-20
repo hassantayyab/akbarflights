@@ -9,7 +9,7 @@ router.get('/ninjas/:n', (req, res, next) => {
   CommentsDB.find({ id: 1 }, { data: { '$elemMatch': { num: req.params.n } } })
     .then((data) => {
       data = data[data.length - 1].data[0];
-      console.log('COMMENTS:', data);
+      // console.log('COMMENTS:', data);
       res.send(data.comments);
     })
     .catch((err) => {

@@ -1,20 +1,42 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router';
-
-function reload() {
-	window.location.reload();
-}
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 class Courses extends Component {
-	render(){
-		return(
+	renderContent() {
+		const list = ['Physics', 'Biology']
+		const courses = list.map((course, index) =>
+			<li>
+				<Link id='google-btn' key={index} className="card-panel hoverable light-blue darken-4 btn" to='/assignments'>
+					{course}
+				</Link>
+			</li>
+		);
+
+		return courses;
+	}
+
+	render() {
+		return (
 			<div>
-				<h1 id="title2" ><img id='img' src="./img/logo.png"/><b>AutoGrader</b></h1>
-				<div id="coursesTitle">Your Courses</div>
-				<li><a href="/auth/logout">Log out</a></li>
-				<Link to="/assignments"><div id="courses"><button className="button"><span>Course 1</span></button></div></Link>
-				<Link to="/assignments"><div id="courses"><button className="button"><span>Course 2</span></button></div></Link>
+
+				<div id="sign-div">
+					<div id='div-title'>
+						<h4 id='h-title' className='cyan-text text-lighten-5'>
+							Your Courses
+						</h4>
+					</div>
+					<ul id="content">
+						{this.renderContent()}
+					</ul>
+				</div>
+
+				{/* <div id="coursesTitle">Your Courses</div>
+				<div>
+					{this.renderContent()}
+				</div> */}
+
 			</div>
 		);
 	};

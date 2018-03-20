@@ -1,22 +1,34 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router';
-
-function reload() {
-	window.location.reload();
-}
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Assignments extends Component {
-	render(){
-		return(
+	renderContent() {
+		const list = ['Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4']
+		const assignents = list.map((assignment, index) =>
+			<li>
+				<Link id='google-btn' className="card-panel hoverable light-blue darken-4 btn" to={`/app${index + 1}`} key={index}><div>{assignment}</div></Link>
+			</li>
+		);
+
+		return assignents;
+	}
+
+	render() {
+		return (
 			<div>
-				<h1 id="title2" ><img id='img' src="./img/logo.png"/><b>AutoGrader</b></h1>
-				<div id="mainpagetitle">Your Assignments</div>
-				<li><a href="/auth/logout">Log out</a></li>
-				<Link to="/app"><div id="mainpage"><button className="button"><span>Assignment 1</span></button></div></Link>
-				<Link to="/app2"><div id="mainpage"><button className="button"><span>Assignment 2</span></button></div></Link>
-				<Link to="/app3"><div id="mainpage"><button className="button"><span>Assignment 3</span></button></div></Link>
-				<Link to="/app4"><div id="mainpage"><button className="button"><span>Assignment 4</span></button></div></Link>
+				{/* <h1 id="title2" ><img id='img' src="./img/logo.png"/><b>AutoGrader</b></h1>
+				<div id="mainpagetitle">Your Assignments</div> */}
+				<div id="sign-div">
+					<div id='div-title'>
+						<h4 id='h-title' className='cyan-text text-lighten-5'>
+							Assignments
+						</h4>
+					</div>
+					<ul id="content">
+						{this.renderContent()}
+					</ul>
+				</div>
+
 			</div>
 		);
 	};

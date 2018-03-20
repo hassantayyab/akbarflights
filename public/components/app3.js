@@ -11,8 +11,6 @@ const layout = () => (
 		<Title />
 		<AnswerDescription />
 		<AnswerBox />
-		
-		
 	</div>
 );
 

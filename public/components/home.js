@@ -1,22 +1,43 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-function reload() {
-	window.location.reload();
-}
 
-
-class Login extends Component {
-	render(){
-		return(
+class Home extends Component {
+	render() {
+		return (
 			<div>
-				<h1 id="title2" ><img id='img' src="./img/logo.png"/><b>AutoGrader</b></h1>
-				<div id="loginTitle">Login</div>
-				<Link to="/login"><div id="login"><button className="button"><span>Login as Student</span></button></div></Link>
-				<Link to="/login"><div id="login"><button className="button"><span>Login as Instructor</span></button></div></Link>
+				{/* MOVED TO HEADER */}
+				{/* <nav>
+					<div className="nav-wrapper blue-grey darken-4">
+						<a id='title3' href='/' className="brand-logo"><img id='img' src="./img/logo.png" />AutoGrader</a>
+
+						<ul id="nav-mobile" className="right hide-on-med-and-down">
+							<li><a href="/login" className="card-panel hoverable amber darken-4 btn" id='signIn'>Sign in</a></li>
+						</ul>
+					</div>
+				</nav> */}
+				{/*  */}
+				
+				{/* footer */}
+				<div id='footer'>
+					<footer className="page-footer blue-grey darken-4">
+						<div className="container">
+							<div className="col l6 s12">
+								<h5 className="blue-grey-text text-lighten-5">AutoGrader</h5>
+								<p className="grey-text text-lighten-4">Make grading easy and fun.</p>
+							</div>
+						</div>
+						<div className="footer-copyright blue-grey darken-3">
+							<div className="container blue-grey-text text-lighten-5">© 2018 AutoGrader, All rights reserved.<a className="blue-grey-text text-lighten-5 right" href="#!">More Links</a>
+							</div>
+						</div>
+					</footer>
+				</div>
+				{/* footer end */}
 			</div>
 		);
 	};
 };
 
-export default Login;
+export default Home;

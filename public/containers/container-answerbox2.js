@@ -11,7 +11,6 @@ import {AnswerFetchSuccess,AnswerFetchRequest,AnswerFetchFailure} from '../actio
 
 var count = 0;
 var n = 2;
-// var n2 = 'sec';
 var numb = 1;
 var id = 1;
 
@@ -56,13 +55,13 @@ class AnswerBox extends Component {
 	  });
 	}
 	dispatchFetchRequest() {
-	 this.props.FetchRequest();
-	 this.props.AnswerFetchRequest();
+		this.props.FetchRequest();
+		this.props.AnswerFetchRequest();
 	}
 
-	componentWillMount() {
-	 this.apiRequest();
-	 this.dispatchFetchRequest();
+	componentDidMount() {
+		this.apiRequest();
+		this.dispatchFetchRequest();
 	}
 	getList() {
 		if (this.props.comments.status!='error') {
