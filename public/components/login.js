@@ -6,14 +6,6 @@ class Login extends Component {
 	render() {
 		return (
 			<div>
-				{/* MOVED TO HEADER */}
-				{/* <nav> */}
-					{/* title */}
-					{/* <div className="nav-wrapper blue-grey darken-4">
-						<a id='title3' href='/' className="brand-logo blue-grey-text text-lighten-5"><img id='img' src="./img/logo.png" />AutoGrader</a> */}
-						{/* menu */}
-					{/* </div>
-				</nav> */}
 
 				{/* restof page content */}
 				<div id="sign-div">

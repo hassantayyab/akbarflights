@@ -7,7 +7,7 @@ const AnswerSchema = new Schema({
   data: [
     {
       num: Number,
-      numb: Number,
+      count: Number,
       answer: String
     }
   ]

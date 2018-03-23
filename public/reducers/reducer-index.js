@@ -1,30 +1,14 @@
 import { combineReducers } from 'redux';
 import AnswerReducer from './reducer-answer';
-import AnswerReducer2 from './reducer-answer2';
-import AnswerReducer3 from './reducer-answer3';
-import AnswerReducer4 from './reducer-answer4';
-import TitleReducer from './reducer-title';
-import AnswerDescriptionReducer from './reducer-answerDescription';
-import CommentDescriptionreducer from './reducer-commentDescription';
-import CommentBox from './reducer-commentbox';
-import CommentBox2 from './reducer-commentbox2';
-import CommentBox3 from './reducer-commentbox3';
-import CommentBox4 from './reducer-commentbox4';
 import authReducer from './reducer-auth';
+import assignments from './reducer-assignment';
+import commentReducer from './reducer-comments';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
 	auth: authReducer,
+	assignments: assignments,	
 	answer: AnswerReducer,
-	answer2: AnswerReducer2, 
-	answer3: AnswerReducer3,
-	answer4: AnswerReducer4,
-	title: TitleReducer,
-	answerDescription: AnswerDescriptionReducer,
-	commentDescription: CommentDescriptionreducer,
-	CommentBox: CommentBox,
-	CommentBox2: CommentBox2,
-	CommentBox3: CommentBox3,
-	CommentBox4: CommentBox4,
+	comment: commentReducer,	
 	routing: routerReducer
 });

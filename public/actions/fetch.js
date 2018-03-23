@@ -1,22 +1,22 @@
 //define action within an action creator
 export const FetchRequest = () => {
   const FETCH_REQUEST = 'FETCH_REQUEST'
-  console.log('in FETCH_REQUEST');
+  // console.log('in FETCH_REQUEST');
   return {
     type: FETCH_REQUEST,
     status: "loading"
   }
 }
 
-export const FetchSuccess = (payload,n,id) => {
+export const FetchSuccess = (comment, id) => {
   const FETCH_SUCCESS = 'FETCH_SUCCESS'
-  console.log('in FetchSuccess');
+  // console.log('in FetchSuccess');
   return {
     type: FETCH_SUCCESS,
     status: "success",
-    num: n,
+    // num: n,
     id: id,
-    payload
+    comment
   }
 }
 

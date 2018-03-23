@@ -7,8 +7,8 @@ class Courses extends Component {
 	renderContent() {
 		const list = ['Physics', 'Biology']
 		const courses = list.map((course, index) =>
-			<li>
-				<Link id='google-btn' key={index} className="card-panel hoverable light-blue darken-4 btn" to='/assignments'>
+			<li key={index}>
+				<Link id='google-btn' onClick={console.log('you clicked!')} className="card-panel hoverable light-blue darken-4 btn" to={`/assignments${index+1}`}>
 					{course}
 				</Link>
 			</li>
@@ -24,7 +24,7 @@ class Courses extends Component {
 				<div id="sign-div">
 					<div id='div-title'>
 						<h4 id='h-title' className='cyan-text text-lighten-5'>
-							Your Courses
+							Courses
 						</h4>
 					</div>
 					<ul id="content">

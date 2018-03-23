@@ -21,8 +21,8 @@ router.get('/ninjas/:n', (req, res, next) => {
 router.post('/ninjas', (req, res, next) => {
   // console.log('in router.post:',req.body);
   var item = {
-    id: req.body.ident,
-    num: req.body.num,
+    id: 1,
+    num: req.body.id,
     size: req.body.com.length,
     comments: req.body.com
   };
@@ -85,11 +85,11 @@ router.get('/answer/:n/:id', (req, res, next) => {
 // add new answer
 router.post('/answer', (req, res, next) => {
   var item = {
-    num: req.body.num,
-    numb: req.body.numb,
-    answer: req.body.ans
+    num: req.body.id,
+    count: req.body.hiLiCount,
+    answer: req.body.answer
   };
-  // var data = { num: item.num, numb: item.numb, answer: item.answer };
+  // var data = { num: item.num, hiLiCount: item.hiLiCount, answer: item.answer };
   // Person.update({ 'items.id': 2 }, {
   //   '$set': {
   //     'items.$.name': 'updated item2',
@@ -97,7 +97,7 @@ router.post('/answer', (req, res, next) => {
   //   }
   // }, function (err) { ...
 
-  if (item.numb != 2) {
+  if (item.count != 2) {
     // console.log('In update');
     AnswerDB.update(
       // { 'data.num': { '$ne': item.num } },
@@ -105,7 +105,7 @@ router.post('/answer', (req, res, next) => {
       // {upsert:true}
 
       { 'data.num': item.num },
-      { '$set': { 'data.$.answer': item.answer, 'data.$.numb': item.numb } }
+      { '$set': { 'data.$.answer': item.answer, 'data.$.count': item.count } }
 
       // {data: item}
       // {},
@@ -127,7 +127,7 @@ router.post('/answer', (req, res, next) => {
 
       { id: 1 },
       { $addToSet: { 'data': item } },
-      // { '$push': { 'data.$.num': item.num,'data.$.numb':item.numb,'data.$.answer':item.answer } },
+      // { '$push': { 'data.$.num': item.num,'data.$.hiLiCount':item.hiLiCount,'data.$.answer':item.answer } },
       { safe: true, upsert: true }
 
       //     // {"data.num":item.num},
@@ -138,7 +138,7 @@ router.post('/answer', (req, res, next) => {
       //     // {"data.num": item.num},
 
       //     // {},
-      //     // { $set: { "data.$[elem].numb": item.numb, "data.$[elem].answer": item.answer } },
+      //     // { $set: { "data.$[elem].hiLiCount": item.hiLiCount, "data.$[elem].answer": item.answer } },
       //     // { arrayFilters: [{ "elem.num": item.num }] }
     )
       .then((answer) => {

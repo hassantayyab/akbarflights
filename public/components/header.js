@@ -15,9 +15,7 @@ class Header extends Component {
       default:
         // <li>{this.props.auth}</li>
         const loggedIn = [
-          <li><img id='thumbnail' className="circle responsive-img"
-            src={user.thumbnail}
-          /></li>,
+          <li><img id='thumbnail' className="circle responsive-img" src={user.thumbnail} /></li>,
           <li id="username" className="blue-grey-text text-lighten-4">{user.username}</li>,
           <li><a href="/auth/logout" className="card-panel hoverable amber darken-4 btn" id='signIn'>Log out</a></li>
         ];
@@ -48,7 +46,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.auth.payload
   };
 }
 

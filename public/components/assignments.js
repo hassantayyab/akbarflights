@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Assignments extends Component {
 	renderContent() {
-		const list = ['Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4']
-		const assignents = list.map((assignment, index) =>
-			<li>
-				<Link id='google-btn' className="card-panel hoverable light-blue darken-4 btn" to={`/app${index + 1}`} key={index}><div>{assignment}</div></Link>
+		// console.log('ownProps:', this.props.id);
+		// console.log('assignments:', this.props.assignments);
+		const list = this.props.assignments[this.props.id-1].map((assignment, index) =>
+			<li key={index}>
+				<Link id='google-btn' className="card-panel hoverable light-blue darken-4 btn" to={`/app${index + 1}`}>{assignment}</Link>
 			</li>
 		);
 
-		return assignents;
+		return list;
 	}
 
 	render() {
@@ -34,4 +36,13 @@ class Assignments extends Component {
 	};
 };
 
-export default Assignments;
+function mapStateToProps(state, ownProps) {
+	// console.log('ownProps:', ownProps.match.params.filter);
+	
+	return {
+		assignments:state.assignments.assignments,
+		id: ownProps.match.params.filter
+	};
+}
+
+export default connect(mapStateToProps)(Assignments);

@@ -4,7 +4,7 @@ var content = "There are three reasons why I prefer jogging to other sports. One
 
 var initialState = {
 	status: "",
-  num: 2,
+  id: 2,
   content: content,
 	numb: 1,
   error: ""
@@ -18,11 +18,11 @@ export default function(state=initialState,action){
 	    })
 	    return requested
 	  case 'ANSWER_FETCH_SUCCESS':
-      if(initialState.num===action.num) {
+      if(initialState.id===action.id) {
         //console.log('in reducer-A:',action.payload);
         const successful = Object.assign({}, state, {
           status: action.status,
-					numb: action.numb,
+					hiLiCount: action.hiLiCount,
           content: action.payload
         })
         // console.log('successful-A',successful);
@@ -36,18 +36,18 @@ export default function(state=initialState,action){
 	    })
 	    return failed
     case 'USER_SELECTED':
-			if(initialState.num===action.num) {
+			if(initialState.id===action.id) {
 				var selected = Object.assign({}, state, {
-					num: action.num,
-					numb: action.numb,
+					id: action.id,
+					hiLiCount: action.hiLiCount,
 					content: action.ans
 				})
-				// console.log('NUMB:', action.numb);
+				// console.log('hiLiCount:', action.hiLiCount);
 				axios.post('/api/answer',{
-					ident:action.ident,
-					numb:action.numb,
-					ans:action.ans,
-					num:action.num
+					ident: 1,
+					numb: action.hiLiCount,
+					ans: action.ans,
+					num: action.id
 				}).catch(function (err) {
 					console.log('Error in Answer Post:',err);
 				});

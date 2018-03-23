@@ -1,21 +1,13 @@
-var x = {
+export const submit = (comment, comCount, id) => {
+  comCount++;
+  const x = comCount + '. ' + comment;
+  // console.log('x = ', x);
+  
+  return {
     type: 'USER_SUBMITTED',
-    id: 1,
-    num: 1,
-    status: "success",
-    payload: []
-}
-
-var counter = 1;
-
-export const submit = (input, count, num,id) => {
-  if (count!==0) {
-    counter = count+1;
-  }
-  x.id = id;
-  x.payload = counter+ ". " + input;
-  counter++;
-  x.num = num;
-  console.log('IN SUBMIT',x);
-  return x;
+    status: 'success',
+    id: id,
+    comCount: comCount,
+    comment: x
+  };
 };

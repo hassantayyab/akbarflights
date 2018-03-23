@@ -2,9 +2,37 @@
   border-radius: 0px;
 }
 
+#answer {
+  margin: 2% 2% 1% 0%;
+  padding: 18px 30px;
+  border: 2px solid #f8f8f8;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 0 4px 8px 0 rgba(163, 73, 73, 0.2),
+  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#comments {
+  border: 2px solid #f4ff81;
+  background-color: #f4ff81;
+  word-wrap: break-word;
+  font-size: 16px;
+  margin: 2% 2% 10px 14%;
+  padding: 2px 2px 2px 2px;
+  min-height: 50px;
+  width: 18em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  resize: vertical;
+}
+
 #signIn {
   margin-top: 6%;
   border-radius: 0px;
+}
+
+#addComment {
+  margin: 2% 0% 1% 1%;
 }
 
 #center-title {
@@ -12,14 +40,27 @@
 }
 
 #thumbnail {
-  margin-top: 7px;
+  margin-top: 12px;
+  max-width: 80%;
+  height: auto;
+}
+
+#title3 {
+  margin-left: 1%;
+}
+
+#img {
+  float: left;
+  margin: 2px 6px;
+  max-width: 23%;
+  height: auto;  
 }
 
 #username {
   /* padding-top: 12%; */
   margin-right: 30px;
-  margin-left: 10px;  
-  font-size: 20px;
+  margin-left: 2px;  
+  font-size: 18px;
 }
 
 #h-title {
@@ -71,26 +112,12 @@ footer {
 }
 
 /********************************************************************/
-#title {
-	letter-spacing: 3px;
-	color: #3399ff;
-	font-size: 60px;
-	text-shadow: 2px 2px 4px #1a1a1a;
-	margin-left: 34%;
-}
 #title2 {
 	letter-spacing: 3px;
 	color: #3399ff;
 	font-size: 60px;
 	text-shadow: 2px 2px 4px #1a1a1a;
 	margin-left: 33.6%;
-}
-#title3 {
-  margin-left: 1%;
-}
-#img {
-	float: left;
-	margin-right: 6px
 }
 
 #mainpage {
@@ -267,39 +294,6 @@ mark {
 #submit:hover {
 	background-color: #0059b3;
 	border: 2px solid #0059b3;
-}
-
-#answer{
-	margin-left: 88px;
-	color: #0080ff;
-	text-shadow: 0.5px 0.5px 1px #1a1a1a;
-}
-
-#div {
-	display: inline-block;
-  max-width: 800px;
-  margin-bottom: 2%;
-  padding: 14px 30px;
-  border: 2px solid #f8f8f8;
-  background-color: #f8f8f8;
-  font-size: 18px;
-	line-height: 1.5;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.comments {
-	border: 2px solid #ffff66;
-  border-radius: 4px;
-  background-color: #ffff66;
-  word-wrap: break-word;
-  font-size: 14px;
-  margin:5px 5px 5px 5px;
-	margin-right: 95px;
-  padding:2px 2px 2px 2px;
-	min-height: 50px;
-  width:18em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  resize: vertical;
 }
 
 .AnswerClass {

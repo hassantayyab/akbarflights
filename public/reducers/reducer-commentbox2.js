@@ -3,7 +3,7 @@ import axios from 'axios';
 //define the initial state
 const initialState = {
 	status: "",
-	num: 2,
+	id: 2,
 	payload: [],
 	error: ""
 }
@@ -18,14 +18,14 @@ export default function (state = initialState, action) {
 			})
 			return requested
 		case 'FETCH_SUCCESS':
-			if (initialState.num === action.num) {
-				console.log('in reducer:', action.payload);
+			if (initialState.id === action.id) {
+				// console.log('in reducer:', action.payload);
 				const successful = Object.assign({}, state, {
 					status: action.status,
 					payload: action.payload
 				})
 				x = action.payload;
-				console.log('successful', successful);
+				// console.log('successful', successful);
 				return successful
 			}
 			return state
@@ -36,23 +36,21 @@ export default function (state = initialState, action) {
 			})
 			return failed
 		case 'USER_SUBMITTED':
-			// console.log("LOGGGG:",action.num,initialState.num);
-			if (initialState.num === action.num) {
+			// console.log("LOGGGG:",action.id,initialState.id);
+			if (initialState.id === action.id) {
 				x.push(action.payload);
 				const submit = Object.assign({}, state, {
 					status: action.status,
 					payload: x
 				})
-				console.log('com of assignment2:', x);
-				axios.post('api/ninjas', { ident: 1, com: x, num: action.num }).catch(function (err) {
+				// console.log('com of assignment2:', x);
+				axios.post('api/ninjas', { ident: 1, com: x, id: action.id }).catch(function (err) {
 					console.log('Error');
 				});
 				return submit;
 			}
 			return state
-		case 'USER_DELETED':
-			console.log('user-deleted:', action.payload);
-			return action.payload;
+
 		default:
 			// console.log('default state:',state);
 			return state

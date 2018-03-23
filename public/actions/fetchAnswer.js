@@ -8,16 +8,13 @@ export const AnswerFetchRequest = () => {
   }
 }
 
-export const AnswerFetchSuccess = (payload,numb,n,id) => {
+export const AnswerFetchSuccess = (answer, hiLiCount, id) => {
   const FETCH_SUCCESS = 'ANSWER_FETCH_SUCCESS'
   // console.log('in AnswerFetchSuccess');
   return {
     type: FETCH_SUCCESS,
     status: "success",
-    ident: id,
-    numb:numb,
-    num: n,
-    payload
+    hiLiCount, id, answer
   }
 }
 

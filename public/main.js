@@ -8,14 +8,6 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import MainApp from './components/main-app';
-import App from './components/app';
-import App2 from './components/app2';
-import App3 from './components/app3';
-import App4 from './components/app4';
-import Assignments from './components/assignments';
-import Courses from './components/courses';
-import Login from './components/login';
-import Home from './components/home';
 
 
 const store = createStore(allReducers, {}, applyMiddleware(reduxThunk));
