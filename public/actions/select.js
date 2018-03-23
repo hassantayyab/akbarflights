@@ -11,7 +11,7 @@ export const selectText = (textarea, hiLiCount, id) => {
       var html = '<div id="circle">' + hiLiCount + '</div>' + '<mark>' + range + '</mark>';
       range.deleteContents();
       hiLiCount++;
-      var el = document.createElement("div");
+      var el = document.createElement('div');
       el.innerHTML = html;
       var frag = document.createDocumentFragment(), node, lastNode;
       while ((node = el.firstChild)) {
@@ -25,8 +25,8 @@ export const selectText = (textarea, hiLiCount, id) => {
     range.pasteHTML(html);
   }
 
-  var x = document.getElementById('div').innerHTML;
-  //console.log('TEXT:',typeof x, x);
+  var x = document.getElementById('answer').innerHTML;
+  // console.log('hiLiCount in select:', hiLiCount);
   return {
     type: 'USER_SELECTED',
     id, hiLiCount,

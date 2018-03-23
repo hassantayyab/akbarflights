@@ -68,6 +68,7 @@ import Home from './home';
 
 class MainApp extends Component {
   componentDidMount() {
+    console.log('fetchUser:', this.props.FetchUser());
     this.props.FetchUser();
   }
   
@@ -100,7 +101,7 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    FetchUser:FetchUser
+    FetchUser
   }, dispatch);
 }
 

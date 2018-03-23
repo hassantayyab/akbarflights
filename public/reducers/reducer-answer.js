@@ -26,10 +26,12 @@ export default (state = initialState, action) => {
 			state.status = action.status;
 			state.hiLiCount[action.id - 1] = action.hiLiCount;
 			state.answers[action.id - 1] = action.answer;
-			return state;
+			return Object.assign({}, state, {
+				status: action.status
+			})
 
 		case 'USER_SELECTED':
-			// console.log('data:', data);
+			// console.log('hiLiCount in reducer:', action.hiLiCount);
 			const data = {
 				id: action.id,
 				hiLiCount: action.hiLiCount,
@@ -43,7 +45,9 @@ export default (state = initialState, action) => {
 			
 			state.hiLiCount[action.id - 1] = action.hiLiCount;			
 			state.answers[action.id - 1] = action.answer;
-			return state;
+			return Object.assign({}, state, {
+				status: action.status
+			})
 
 		default:
 			return state

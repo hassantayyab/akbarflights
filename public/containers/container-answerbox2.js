@@ -97,7 +97,7 @@ class AnswerBox extends Component {
 					<a className='btn-floating btn-large waves-effect waves-light red' disabled={this.state.able} onClick={() => this.openPopup()}><i className="material-icons">comment</i></a>
 				</div>
 				{/* Answer */}
-				<div id='answer' className='col s7' dangerouslySetInnerHTML={this.redraw()} onMouseUp={() => { this.enable(); this.props.selectText(document.getElementById("div"), hiLiCount, this.props.id) }} />
+				<div id='answer' className='col s7' dangerouslySetInnerHTML={this.redraw()} onMouseUp={() => { this.enable(); this.props.selectText(document.getElementById('answer'), hiLiCount, this.props.id) }} />
 				{/* PopUp Box */}
 				<Popup isOpen={this.state.isPopupOpen} onClose={() => this.closePopup(event)}>
 					<h1 id="popup-comment">Enter Comment</h1>
@@ -107,7 +107,7 @@ class AnswerBox extends Component {
 					</form>
 				</Popup>
 				{/* Comments List */}
-				<div className='col s3'>
+				<div id='commentsDiv' className='col s3'>
 					<ul>
 						{this.getList()}
 					</ul>
@@ -130,8 +130,6 @@ class AnswerBox extends Component {
 	}
 }
 
-//<button style={{textAlign:'right', display:'inline-block', float:'right', borderRadius:'50%', backgroundColor:'red'}}>X</button>
-
 function mapStateToProps(state, ownProps) {
 	// console.log('in container:',state.CommentBox2);
 	// console.log('in container-A:',state.answer2);
@@ -147,7 +145,7 @@ function mapStateToProps(state, ownProps) {
 function matchDispatchToProps(dispatch) {
 	return bindActionCreators({
 		selectText,
-		submit: submit,
+		submit,
 		FetchRequest,
 		FetchSuccess,
 		FetchFailure,

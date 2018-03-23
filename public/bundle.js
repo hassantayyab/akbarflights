@@ -28578,10 +28578,12 @@ exports.default = function () {
 			state.status = action.status;
 			state.hiLiCount[action.id - 1] = action.hiLiCount;
 			state.answers[action.id - 1] = action.answer;
-			return state;
+			return Object.assign({}, state, {
+				status: action.status
+			});
 
 		case 'USER_SELECTED':
-			// console.log('data:', data);
+			// console.log('hiLiCount in reducer:', action.hiLiCount);
 			var data = {
 				id: action.id,
 				hiLiCount: action.hiLiCount,
@@ -28594,7 +28596,9 @@ exports.default = function () {
 
 			state.hiLiCount[action.id - 1] = action.hiLiCount;
 			state.answers[action.id - 1] = action.answer;
-			return state;
+			return Object.assign({}, state, {
+				status: action.status
+			});
 
 		default:
 			return state;
@@ -29566,10 +29570,9 @@ exports.default = function () {
 
   switch (action.type) {
     case 'FETCH_REQUEST':
-      var requested = Object.assign({}, state, {
+      return Object.assign({}, state, {
         status: action.status
       });
-      return requested;
 
     case 'FETCH_SUCCESS':
       // console.log('in reducer:', action.comment);
@@ -29584,7 +29587,9 @@ exports.default = function () {
         console.log('Error');
       });
       // console.log("action.comment:", action.comment);
-      return state;
+      return Object.assign({}, state, {
+        status: action.status
+      });
 
     default:
       return state;
@@ -33118,6 +33123,7 @@ var MainApp = function (_Component) {
   _createClass(MainApp, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      console.log('fetchUser:', this.props.FetchUser());
       this.props.FetchUser();
     }
   }, {
@@ -36400,7 +36406,7 @@ var Header = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'navbar-fixed' },
         _react2.default.createElement(
           'nav',
           null,
@@ -36602,7 +36608,7 @@ var AnswerBox = function (_Component) {
 					)
 				),
 				_react2.default.createElement('div', { id: 'answer', className: 'col s7', dangerouslySetInnerHTML: this.redraw(), onMouseUp: function onMouseUp() {
-						_this3.enable();_this3.props.selectText(document.getElementById("div"), hiLiCount, _this3.props.id);
+						_this3.enable();_this3.props.selectText(document.getElementById('answer'), hiLiCount, _this3.props.id);
 					} }),
 				_react2.default.createElement(
 					_containerPopup2.default,
@@ -36625,7 +36631,7 @@ var AnswerBox = function (_Component) {
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'col s3' },
+					{ id: 'commentsDiv', className: 'col s3' },
 					_react2.default.createElement(
 						'ul',
 						null,
@@ -36654,8 +36660,6 @@ var AnswerBox = function (_Component) {
 
 	return AnswerBox;
 }(_react.Component);
-
-//<button style={{textAlign:'right', display:'inline-block', float:'right', borderRadius:'50%', backgroundColor:'red'}}>X</button>
 
 function mapStateToProps(state, ownProps) {
 	// console.log('in container:',state.CommentBox2);
@@ -36707,7 +36711,7 @@ var selectText = exports.selectText = function selectText(textarea, hiLiCount, i
       var html = '<div id="circle">' + hiLiCount + '</div>' + '<mark>' + range + '</mark>';
       range.deleteContents();
       hiLiCount++;
-      var el = document.createElement("div");
+      var el = document.createElement('div');
       el.innerHTML = html;
       var frag = document.createDocumentFragment(),
           node,
@@ -36723,8 +36727,8 @@ var selectText = exports.selectText = function selectText(textarea, hiLiCount, i
     range.pasteHTML(html);
   }
 
-  var x = document.getElementById('div').innerHTML;
-  //console.log('TEXT:',typeof x, x);
+  var x = document.getElementById('answer').innerHTML;
+  // console.log('hiLiCount in select:', hiLiCount);
   return {
     type: 'USER_SELECTED',
     id: id, hiLiCount: hiLiCount,

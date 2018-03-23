@@ -25,7 +25,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div className='navbar-fixed'>
 
         <nav>
           <div className="nav-wrapper blue-grey darken-4">

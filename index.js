@@ -15,7 +15,7 @@ const app = express();
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // connect to mongoDB
-mongoose.connect(keys.mongodb.mLabURI, {
+mongoose.connect(keys.mongodb.dbURI, {
   useMongoClient: true
   /* other options */
 })

@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       if (action.payload)
         return requested;
       else
-        return {payload:false, status:false};
+        return { payload: false, status: false };
 
     default:
       return state;

@@ -13,7 +13,7 @@ class Login extends Component {
 					<div id="content">
 						<ul>
 							<li>
-								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href="/auth/google" style={{width:'153px'}}>Student</a>
+								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href="/auth/google" style={{ width: '153px' }}>Student</a>
 							</li>
 							<li>
 								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href="/auth/google">Instructor</a>

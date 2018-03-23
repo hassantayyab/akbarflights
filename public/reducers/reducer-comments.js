@@ -9,10 +9,9 @@ var initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
-      const requested = Object.assign({}, state, {
+      return Object.assign({}, state, {
         status: action.status
       })
-      return requested
 
     case 'FETCH_SUCCESS':
       // console.log('in reducer:', action.comment);
@@ -28,7 +27,9 @@ export default (state = initialState, action) => {
           console.log('Error');
         });
       // console.log("action.comment:", action.comment);
-      return state
+      return Object.assign({}, state, {
+        status: action.status
+      })
 
     default:
       return state
