@@ -1,10 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-
-// auth login
-// router.get('/login', (req, res) => {
-//   res.render('login', { user: req.user });
-// });
+// const instructorPassport = require('passport');
 
 // auth logout
 router.get('/logout', (req, res) => {
@@ -15,8 +11,15 @@ router.get('/logout', (req, res) => {
 
 // auth with google+
 router.get(
-  '/google',
+  '/google/student',
   passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })
+);
+////////////////////////////////////////////////////////////////
+router.get(
+  '/google/instructor',
+  passport.authenticate('google2', {
     scope: ['profile', 'email']
   })
 );
@@ -25,14 +28,19 @@ router.get(
 // handle control to passport to use code to grab profile info
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   // res.send(req.user);
-  res.redirect('/courses');
+  res.redirect('/student');
   // res.render('courses', { user: req.user });
+});
+/////////////////////////////////////////////////////////////////
+router.get('/google/callback2', passport.authenticate('google2'), (req, res) => {
+  res.redirect('/instructor');
 });
 
 // auth login
 router.get('/current_user', (req, res) => {
-  // console.log('in .get current_user');
+  // console.log('in router.get current_user',req);
   res.send(req.user);
 });
+
 
 module.exports = router;

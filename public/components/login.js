@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import { UserTypeRequest } from '../actions/userType';
+// import { bindActionCreators } from 'redux';
 
 
 class Login extends Component {
 	render() {
 		return (
 			<div>
-
-				{/* restof page content */}
+				{/* rest of page content */}
 				<div id="sign-div">
 					<h5 id='options' className='cyan-text text-darken-4'>Sign In Using Google As</h5>
 					<div id="content">
 						<ul>
 							<li>
-								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href="/auth/google" style={{ width: '153px' }}>Student</a>
+								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href='/auth/google/student' style={{ width: '153px' }}>Student</a>
 							</li>
 							<li>
-								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href="/auth/google">Instructor</a>
+								<a id='google-btn' className="card-panel hoverable red darken-4 btn" href='/auth/google/instructor'>Instructor</a>
 							</li>
 						</ul>
 					</div>
 				</div>
-
 				{/* footer */}
 				<div id='footer'>
 					<footer className="page-footer blue-grey darken-4">

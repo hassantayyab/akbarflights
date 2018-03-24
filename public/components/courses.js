@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 
 class Courses extends Component {
 	renderContent() {
+		console.log('userType:', this.props.userType)
 		const list = ['Physics', 'Biology']
 		const courses = list.map((course, index) =>
 			<li key={index}>
-				<Link id='google-btn' onClick={console.log('you clicked!')} className="card-panel hoverable light-blue darken-4 btn" to={`/assignments${index+1}`}>
+				<Link id='google-btn' className="card-panel hoverable light-blue darken-4 btn" to={`/assignments${index + 1}`}>
 					{course}
 				</Link>
 			</li>
 		);
-
 		return courses;
 	}
 
@@ -32,14 +33,16 @@ class Courses extends Component {
 					</ul>
 				</div>
 
-				{/* <div id="coursesTitle">Your Courses</div>
-				<div>
-					{this.renderContent()}
-				</div> */}
-
 			</div>
 		);
 	};
 };
 
-export default Courses;
+function mapStateToProps(state) {
+	console.log('state in courses:', state)
+	return {
+		user: state.auth.payload
+	};
+}
+
+export default connect(mapStateToProps, null)(Courses);

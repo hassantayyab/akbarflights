@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
-import AnswerReducer from './reducer-answer';
-import authReducer from './reducer-auth';
+import answer from './reducer-answer';
+import auth from './reducer-auth';
+// import authType from './reducer-userType';
 import assignments from './reducer-assignment';
-import commentReducer from './reducer-comments';
+import comment from './reducer-comments';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
-	auth: authReducer,
-	assignments: assignments,	
-	answer: AnswerReducer,
-	comment: commentReducer,	
+	auth,
+	assignments,	
+	answer,
+	comment,	
 	routing: routerReducer
 });

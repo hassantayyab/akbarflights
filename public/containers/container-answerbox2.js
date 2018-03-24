@@ -100,7 +100,7 @@ class AnswerBox extends Component {
 				<div id='answer' className='col s7' dangerouslySetInnerHTML={this.redraw()} onMouseUp={() => { this.enable(); this.props.selectText(document.getElementById('answer'), hiLiCount, this.props.id) }} />
 				{/* PopUp Box */}
 				<Popup isOpen={this.state.isPopupOpen} onClose={() => this.closePopup(event)}>
-					<h1 id="popup-comment">Enter Comment</h1>
+					<h5 id="popup-comment">Enter Comment</h5>
 					<form>
 						<input id="submit-text" type="text" required ref="newItem" autoFocus />
 						<input id="submit" type="submit" value="Add Comment" onClick={() => { this.closePopup(event); this.props.submit(this.refs.newItem.value, comCount, this.props.id) }} />

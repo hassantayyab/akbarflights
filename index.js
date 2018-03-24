@@ -6,7 +6,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const apiRoutes = require('./routes/api');
 const authRoutes = require('./routes/auth-routes');
-const coursesRoutes = require('./routes/courses-routes');
+const restrictedRoutes = require('./routes/restrictedRoutes');
 require('./config/passport-setup');
 const keys = require('./config/keys');
 
@@ -15,7 +15,7 @@ const app = express();
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // connect to mongoDB
-mongoose.connect(keys.mongodb.mLabURI, {
+mongoose.connect(keys.mongodb.dbURI, {
   useMongoClient: true
   /* other options */
 })
@@ -45,6 +45,7 @@ app.use(passport.session());
 // initialize routes
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
+app.use('/', restrictedRoutes);
 
 app.use(express.static('public'));
 app.get('*', (req, res) => {

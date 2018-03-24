@@ -10,7 +10,7 @@ class Header extends Component {
       case null:
         return;
       case false:
-        const signIn = <li><a href="/login" className="card-panel hoverable amber darken-4 btn" id='signIn'>Sign in</a></li>
+        const signIn = <li><Link to="/login" className="card-panel hoverable amber darken-4 btn" id='signIn'>Sign in</Link></li>
         return signIn;
       default:
         // <li>{this.props.auth}</li>
@@ -23,13 +23,28 @@ class Header extends Component {
     }
   }
 
+  goTo() {
+    const user = this.props.auth;
+    if (user) {
+      if (user.userType === 0) {
+        return '/student';
+      }
+      else if (user.userType === 1) {
+        return '/instructor';
+      }
+    }
+    else {
+      return '/';
+    }
+  }
+
   render() {
     return (
       <div className='navbar-fixed'>
 
         <nav>
           <div className="nav-wrapper blue-grey darken-4">
-            <Link id='title3' to={this.props.auth ? '/courses' : '/'} className="left brand-logo blue-grey-text text-lighten-4"><img id='img' src="./img/logo.png" />AutoGrader</Link>
+            <Link id='title3' to={this.goTo()} className="left brand-logo blue-grey-text text-lighten-4"><img id='img' src="./img/logo.png" />AutoGrader</Link>
             {/* <ul id="middleContent" className="hide-on-med-and-down">
               <li className="blue-grey-text text-lighten-4">Middle Content</li>
             </ul> */}
