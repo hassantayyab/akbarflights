@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
       })
 
     case 'FETCH_SUCCESS':
-      // console.log('in reducer:', action.comment);
+      console.log('in reducer:', action.comment);
       state.comments[action.id -1] = action.comment;
       return Object.assign({}, state, {
         status: action.status

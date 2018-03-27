@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CommentsDB = require('../models/comments');
 const AnswerDB = require('../models/answer');
+const CoursesDB = require('../models/coursesModel');
 
 // get all comments list
 router.get('/ninjas/:n', (req, res, next) => {
@@ -14,6 +15,21 @@ router.get('/ninjas/:n', (req, res, next) => {
     })
     .catch((err) => {
       console.log('ERROR IN API COMMENTS:', err);
+    });
+});
+
+// get all courses list
+router.get('/courses/:n', (req, res, next) => {
+  // console.log('In router.get courses:', req.params.n);
+  CoursesDB.find({ id: 1 }, { data: { '$elemMatch': { num: req.params.n } } })
+    .then((data) => {
+      // console.log('COURSES:', data);
+      data = data[data.length - 1].data[0];
+      // console.log('COURSES:', data);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log('ERROR IN API COURSES:', err);
     });
 });
 
@@ -55,6 +71,42 @@ router.post('/ninjas', (req, res, next) => {
   }
 });
 
+// add new course
+router.post('/courses', (req, res, next) => {
+  console.log('in Course router.post:',req.body);
+  var item = {
+    num: req.body.id,
+    courses: req.body.course
+  };
+
+  if (req.body.c > 1) {
+    console.log('In course update');
+    CoursesDB.update(
+      { 'data.num': item.num },
+      { '$set': { 'data.$.courses': item.courses, 'data.$.num': item.num } }
+    )
+      .then((course) => {
+        res.send(course);
+      })
+      .catch((err) => {
+        console.log('ERROR in api course POST:', err);
+      });
+  } else {
+    console.log('In course create');
+    CoursesDB.update(
+      { id: 1 },
+      { $addToSet: { 'data': item } },
+      { safe: true, upsert: true }
+    )
+      .then((course) => {
+        res.send(course);
+      })
+      .catch((err) => {
+        console.log('ERROR in course api POST:', err);
+      });
+    }
+});
+
 // update comments
 router.put('/ninjas', (req, res, next) => {
   CommentsDB.update({ _id: req.params.id }, req.body).then(
@@ -89,28 +141,12 @@ router.post('/answer', (req, res, next) => {
     count: req.body.hiLiCount,
     answer: req.body.answer
   };
-  // var data = { num: item.num, hiLiCount: item.hiLiCount, answer: item.answer };
-  // Person.update({ 'items.id': 2 }, {
-  //   '$set': {
-  //     'items.$.name': 'updated item2',
-  //     'items.$.value': 'two updated'
-  //   }
-  // }, function (err) { ...
 
   if (item.count != 2) {
     // console.log('In update');
     AnswerDB.update(
-      // { 'data.num': { '$ne': item.num } },
-      // { '$addToSet': { 'data': item } },
-      // {upsert:true}
-
       { 'data.num': item.num },
       { '$set': { 'data.$.answer': item.answer, 'data.$.count': item.count } }
-
-      // {data: item}
-      // {},
-      // { '$set': {'data.$[elem]': [item]} },
-      // { 'arrayFilters': [{ "elem.num": item.num }], upsert: true}
     )
       .then((answer) => {
         res.send(answer);
@@ -121,25 +157,9 @@ router.post('/answer', (req, res, next) => {
   } else {
     // console.log('In create');
     AnswerDB.update(
-      // { },
-      // {$push: {data: item}},
-      // {safe: true , upsert: true}
-
       { id: 1 },
       { $addToSet: { 'data': item } },
-      // { '$push': { 'data.$.num': item.num,'data.$.hiLiCount':item.hiLiCount,'data.$.answer':item.answer } },
       { safe: true, upsert: true }
-
-      //     // {"data.num":item.num},
-      //     // { $set: { "data.$[elem]": item } },
-      //     // { arrayFilters: [{ "elem.num": item.num }] }
-      //     // { "data.num": item.num },
-      //     // { data: [item] }
-      //     // {"data.num": item.num},
-
-      //     // {},
-      //     // { $set: { "data.$[elem].hiLiCount": item.hiLiCount, "data.$[elem].answer": item.answer } },
-      //     // { arrayFilters: [{ "elem.num": item.num }] }
     )
       .then((answer) => {
         res.send(answer);

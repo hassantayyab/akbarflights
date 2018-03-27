@@ -15,7 +15,7 @@ export const FetchSuccess = (comment, id) => {
     type: FETCH_SUCCESS,
     status: "success",
     // num: n,
-    id: id,
+    id,
     comment
   }
 }

@@ -38,7 +38,7 @@ router.get('/google/callback2', passport.authenticate('google2'), (req, res) => 
 
 // auth login
 router.get('/current_user', (req, res) => {
-  // console.log('in router.get current_user',req);
+  // console.log('in router.get current_user', req.user);
   res.send(req.user);
 });
 

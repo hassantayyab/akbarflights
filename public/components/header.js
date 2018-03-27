@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
   renderContent() {
-    // console.log(this.props.auth);
     const user = this.props.auth;
+    // console.log('in header this.props.auth:', user);
     switch (user) {
       case null:
         return;

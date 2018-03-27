@@ -21,13 +21,9 @@ mongoose.connect(keys.mongodb.mLabURI, {
 })
   .then(() => console.log('connected to MongoDB...'))
   .catch((err) => console.log(err));
-// for local mongoDB
-// mongoose.connect(keys.mongodb.dbURI, {
-//   useMongoClient: true
-//   /* other options */
-// })
-//   .then(() => console.log('connected to MongoDB...'))
-//   .catch((err) => console.log(err));
+// for local mongoDB: keys.mongodb.dbURI
+// for online mongoDB: keys.mongodb.mLabURI
+
 // Body Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

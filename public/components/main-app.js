@@ -5,12 +5,7 @@ import { bindActionCreators } from 'redux';
 import decode from 'jwt-decode';
 // actions
 import { FetchUser } from '../actions/fetchUser';
-// import { UserTypeFetch } from '../actions/userType';
-// components
-// import requireLogin from './requireLogin';
-// import { AuthContainer } from './containers/Auth'
 import Header from './header';
-// import App from './app';
 import App from '../containers/container-answerbox2';
 import Assignments from './assignments';
 import Courses from './courses';

@@ -8,21 +8,21 @@ const Instructor = require('../models/instructor-model');
 
 passport.serializeUser((user, done) => {
   // console.log('in serializeUser:', user.id);
-  done(null, user.id);
+  // done(null, user.id);
 
-  // var key;
-  // if (user instanceof User) {
-  //   key = {
-  //     id: user.id,
-  //     type: 0
-  //   }
-  // } else if (user instanceof Instructor) {
-  //     key = {
-  //       id: user.id,
-  //       type: 1
-  //     }
-  //   }
-  // done(null, key);
+  var key;
+  if (user instanceof User) {
+    key = {
+      id: user.id,
+      type: 1
+    }
+  } else if (user instanceof Instructor) {
+      key = {
+        id: user.id,
+        type: 2
+      }
+    }
+  done(null, key);
 
   // if (Instructor.findById(user.id)) {
   //   done(null, user.id);
@@ -32,11 +32,22 @@ passport.serializeUser((user, done) => {
   // }
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((key, done) => {
   // console.log('in deserializeUser:', id);
   // User.findById(id).then(user => {
   //   done(null, user);
   // });
+
+  if (key.type === 1) {
+    User.findById(key.id, function (err, user) {
+      done(err, user);
+    });
+    } else if (key.type === 2) {
+      Instructor.findById(key.id, function (err, user) {
+        done(err, user);
+      });
+    }
+});
 
   // if (key.type === 0) {
   //   User.findById(key.id, function (err, user) {
@@ -64,7 +75,6 @@ passport.deserializeUser((id, done) => {
   //   });
   // }
   // 5ab6860b4ea1ad26bcb7e3c1
-});
 ////////////////////////////////////////////////////////////////////
 // passport.serializeUser((instructor, done) => {
 //   done(null, instructor.id);
