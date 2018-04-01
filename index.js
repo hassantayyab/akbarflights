@@ -1,21 +1,21 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const path = require('path');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
-const apiRoutes = require('./routes/api');
-const authRoutes = require('./routes/auth-routes');
+const express =          require('express');
+const mongoose =         require('mongoose');
+const bodyParser =       require('body-parser');
+const path =             require('path');
+const cookieSession =    require('cookie-session');
+const passport =         require('passport');
+const apiRoutes =        require('./routes/api');
+const authRoutes =       require('./routes/auth-routes');
 const restrictedRoutes = require('./routes/restrictedRoutes');
-require('./config/passport-setup');
-const keys = require('./config/keys');
+                         require('./config/passport-setup');
+const keys =             require('./config/keys');
 
 // set up express app
 const app = express();
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // connect to mongoDB
-mongoose.connect(keys.mongodb.mLabURI, {
+mongoose.connect(keys.mongodb.dbURI, {
   useMongoClient: true
   /* other options */
 })

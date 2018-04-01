@@ -25,12 +25,12 @@ class MainApp extends Component {
           <div>
             <Header />
             {/* <Switch> */}
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/student" component={Courses} />
-            <Route exact path="/instructor" component={Courses} />            
+            <Route exact path="/"                    component={Home} />
+            <Route exact path="/login"               component={Login} />
+            <Route exact path="/student"             component={Courses} />
+            <Route exact path="/instructor"          component={Courses} />            
             <Route exact path="/assignments:filter?" component={Assignments} />
-            <Route exact path="/app:filter?" component={App} />
+            <Route exact path="/app:filter?"         component={App} />
             {/* </Switch> */}
             {/* <Home/> */}
           </div>
