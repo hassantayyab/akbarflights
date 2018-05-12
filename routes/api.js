@@ -3,6 +3,70 @@ const router = express.Router();
 const CommentsDB = require('../models/comments');
 const AnswerDB = require('../models/answer');
 const CoursesDB = require('../models/coursesModel');
+const User = require('../models/userModel');
+const PythonShell = require('python-shell');
+
+// fetch User
+router.get('/user', (req, res, next) => {
+  // console.log('In user router.get:', req.params.n);
+  // User.findOne({ username: req.params.n.username, password: req.params.n.password })
+  User.findOne({ id: 1 })  
+    .then((data) => {
+      console.log('USER:', data);
+      // data = data[data.length - 1];
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log('ERROR IN API USER:', err);
+    });
+});
+// add new user
+router.post('/user', (req, res, next) => {
+  console.log('in user router.post:',req.body)
+  User.update(
+    { id: 1 },
+    {
+      username: req.body[0],
+      password: req.body[1],
+      multiplier: Number(req.body[2])
+    },
+    { upsert: true }
+  )
+    .then((user) => {
+      res.send(user);
+    })
+    .catch((err) => {
+      console.log('ERROR in User api POST:', err);
+    });
+});
+
+router.get('/clicked/:n', (req, res) => {
+  var pyshell = new PythonShell('script.py');
+  pyshell.send(req.params.n);
+  pyshell.on('message', (message) => {
+    // received a message sent from the Python script (a simple "print" statement)
+    res.send(message);
+  });
+});
+
+router.get('/submit/:n', (req, res) => {
+  // console.log(req.params.n);
+  var pyshell = new PythonShell('akbartravels.py');
+  pyshell.send(JSON.stringify(req.params.n));
+  // pyshell.send(req.params.n);
+  pyshell.on('message', (message) => {
+    // received a message sent from the Python script (a simple "print" statement)
+    console.log('message:', message);
+    res.send(message);
+  });
+  // end the input stream and allow the process to exit
+  pyshell.end((err) => {
+    if (err) {
+      console.log('ERROR in pyshell.end:', err)
+    };
+    console.log('finished');
+  });
+});
 
 // get all comments list
 router.get('/ninjas/:n', (req, res, next) => {
@@ -73,7 +137,7 @@ router.post('/ninjas', (req, res, next) => {
 
 // add new course
 router.post('/courses', (req, res, next) => {
-  console.log('in Course router.post:',req.body);
+  console.log('in Course router.post:', req.body);
   var item = {
     num: req.body.id,
     courses: req.body.course
@@ -104,7 +168,7 @@ router.post('/courses', (req, res, next) => {
       .catch((err) => {
         console.log('ERROR in course api POST:', err);
       });
-    }
+  }
 });
 
 // update comments
@@ -149,6 +213,20 @@ router.post('/answer', (req, res, next) => {
       { '$set': { 'data.$.answer': item.answer, 'data.$.count': item.count } }
     )
       .then((answer) => {
+        pyshell.send('hello');
+        pyshell.on('message', (message) => {
+          // received a message sent from the Python script (a simple "print" statement)
+          console.log(message);
+        });
+        // end the input stream and allow the process to exit
+        pyshell.end((err, code, signal) => {
+          if (err) throw err;
+          // console.log('The exit code was: ' + code);
+          // console.log('The exit signal was: ' + signal);
+          // console.log('finished');
+          console.log('finished');
+        });
+
         res.send(answer);
       })
       .catch((err) => {

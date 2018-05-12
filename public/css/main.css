@@ -1,16 +1,27 @@
 #google-btn {
   border-radius: 0px;
+  margin-top: 25%;
+  margin-left: 15%;  
 }
 
-#answer {
-  margin: 2% 2% 1% 0%;
-  padding: 18px 30px;
-  border: 2px solid #f8f8f8;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  line-height: 1.5;
-  box-shadow: 0 4px 8px 0 rgba(163, 73, 73, 0.2),
-  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+#currency {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#label {
+  /* font-weight: bold; */
+  color: #3e2723;
+  font-size: 18px;
+}
+
+#dropdowns {
+  margin-top: 2%;
+}
+
+#from {
+  margin-top: 5%;
 }
 
 #commentsDiv {
@@ -41,7 +52,7 @@
 }
 
 #center-title {
-  text-align: center;
+  align-items: center;
 }
 
 #thumbnail {
@@ -64,7 +75,7 @@
   float: left;
   margin: 2px 6px;
   max-width: 23%;
-  height: auto;  
+  height: auto;
 }
 
 #h-title {
@@ -110,6 +121,72 @@ footer {
   text-align: center;
   /* border: 2px solid #f8f8f8; */
   /* background-color: #f8f8f8; */
+  font-size: 18px;
+  line-height: 1.5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#div-contain {
+  margin-left: 7%;
+  margin-right: 7%;
+  
+}
+
+#error {
+  margin-top: 25%;
+  font-size: 16px;
+  color: red;
+}
+
+#form-error {
+  margin-top: 15%;
+  font-size: 16px ;
+  color: red;
+}
+
+#loading-contain {
+  margin-top: 5%;
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
+#results-div {
+  margin: auto;
+  margin-top: 1%;
+  background-color: #ede7f6;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#label-div {
+  margin-top: 2%;
+  max-width: 1500px;
+  text-align: center;
+  /* border: 2px solid #f8f8f8; */
+  background-color: #e1bee7;
+  font-size: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#form-div {
+  margin: auto;
+  margin-top: 1%;
+  max-width: 1500px;
+  padding: 2% 2% 1% 2%;
+  text-align: center;
+  /* border: 2px solid #f8f8f8; */
+  background-color: rgba(155, 0, 95, 0.171);
+  font-size: 18px;
+  line-height: 1.5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#user-div {
+  margin: auto;
+  max-width: 1500px;
+  padding: 2% 2% 1% 2%;
+  text-align: center;
+  /* border: 2px solid #f8f8f8; */
+  background-color: rgba(155, 0, 95, 0.171);
   font-size: 18px;
   line-height: 1.5;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -213,17 +290,6 @@ footer {
   right: 0;
 }
 
-mark {
-	background-color: yellow;
-}
-
-::selection {
-   background: yellow; /* Safari */
-   }
-::-moz-selection {
-   background: yellow; /* Firefox */
-}
-
 .div1 {
 	display: inline;
 }
@@ -305,10 +371,4 @@ mark {
 	width: 40%,
 	height: 600px,
 	padding: 10px
-}
-
-.highlight { background-color: yellow; }
-
-body {
-    background-color: #eceff1;
 }

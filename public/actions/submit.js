@@ -1,13 +1,22 @@
-export const submit = (comment, comCount, id) => {
-  comCount++;
-  const x = comCount + '. ' + comment;
-  // console.log('x = ', x);
-  
+export const submit = (flightsFrm, flightsTo, frm, to) => {
+  const SUBMIT = 'SUBMIT'
+  var status = 'empty';
+  if (flightsFrm==null && flightsTo==null) {
+    status = 'loading'
+  }
+  else if (flightsFrm == null) {
+    status = 'one'
+  }
+  else {
+    status = 'two'
+  }
+  // console.log('in submit');
   return {
-    type: 'USER_SUBMITTED',
-    status: 'success',
-    id: id,
-    comCount: comCount,
-    comment: x
-  };
+    type: SUBMIT,
+    status,
+    payloadf: flightsFrm,
+    payloadt: flightsTo,
+    frm,
+    to
+  }
 };

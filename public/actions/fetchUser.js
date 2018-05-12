@@ -1,13 +1,11 @@
-import axios from 'axios';
-// import { FETCH_USER } from './types';
+export const fetch = (data) => {
+  const FETCH = 'FETCH'
 
-export const FetchUser = () => {
-  const FETCH_USER = 'FETCH_USER'
-  // console.log('in fetchUser action')
-  return function (dispatch) {
-    axios
-      .get('/auth/current_user')
-      .then(res => dispatch({ type:'FETCH_USER', payload: res.data }))
-      .catch(err => console.log('in axios could not fetch User:', err));
-  };
-}
+  return {
+    type: FETCH,
+    status: "success",
+    username: data[0],
+    passord: data[1],
+    multiplier: data[2]
+  }
+};
