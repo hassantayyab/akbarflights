@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path =       require('path');
 const apiRoutes =  require('./routes/api');
-const keys = require('./config/keys');
+const keys = require('./config/dev_keys');
 // set up express app
 const app = express();
 
