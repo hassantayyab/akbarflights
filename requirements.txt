@@ -1,5 +1,7 @@
 selenium==3.11.0
 requests==2.18.4
 jsonschema==2.6.0
-beautifulsoup4==4.6.0
 bs4==0.0.1
+pip==10.0.1
+numba==0.35.0
+pandoc==1.19.2.1
