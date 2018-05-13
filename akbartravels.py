@@ -11,6 +11,12 @@ from bs4 import BeautifulSoup
 import re
 import sys
 import json
+
+
+# reload(sys)  
+# sys.setdefaultencoding('utf8')
+
+
 ######################################### USER INPUT ########################################
 # data = 'Kolkata,Chennai,2018-04-27,2018-04-28,First,1,2,0'
 #Read data from stdin
@@ -45,7 +51,7 @@ n_infnt = str(data[7])			# 0 - 1 (Number)
 
 # 'E'-> Economy, 'B'-> Business, 'F'-> First Class, 'PE'-> Premium Economy
 trv_opt = str(data[4])
-delay = 1
+delay = 2
 ######################################### Webdriver ########################################
 t1 = time.time()
 
@@ -103,6 +109,7 @@ Travel.select_by_value(trv_opt)
 driver.find_element_by_xpath("//span[contains(text(), 'SEARCH')]").click()
 
 if oneWay and not roundTrip:
+	time.sleep(delay*15)
 	WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.ID, "divFlightDetails")))
 	soup = BeautifulSoup(driver.page_source,"html.parser")
 	results = dict()
@@ -114,7 +121,7 @@ if oneWay and not roundTrip:
 	flightDeparture = [flightDepAndArr[x] for x in range(0,len(flightDepAndArr),2)]
 	flightArrival = [flightDepAndArr[x] for x in range(1,len(flightDepAndArr),2)]
 	flightDuration = [n.get_text().strip() for n in oneSide.find_all("div",class_="duration") if n.get_text()]	
-	flightFare = [n.get_text().replace('\xa0',' ') for n in oneSide.find_all("span",id=re.compile('^spnFareDetail')) if n.get_text()]
+	flightFare = [n.get_text().encode("ascii", "ignore").decode("utf-8") for n in oneSide.find_all("span",id=re.compile('^spnFareDetail')) if n.get_text()]
 	flightImages = [n.find("img")["src"] for n in oneSide.find_all("div",class_="airlinedet") if n.find("img")]
 	results[typ] = list(zip(flightNums,flightImages,flightDeparture,flightDuration,flightArrival,flightFare))
 
@@ -122,7 +129,9 @@ if oneWay and not roundTrip:
 	print(res)
 
 elif roundTrip and not oneWay:
-	WebDriverWait(driver, 60).until(EC.visibility_of_element_located((By.CLASS_NAME, "doms-listcont")))
+	WebDriverWait(driver, 60).until(EC.visibility_of_element_located((By.ID, "NormalSrch"))).click()
+	time.sleep(delay*15)
+	# WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.CLASS_NAME, "doms-listcont")))
 	soup = BeautifulSoup(driver.page_source,"html.parser")
 	results = dict()
 	leftSide = soup.find("div",id="divOWBx") 
@@ -132,7 +141,7 @@ elif roundTrip and not oneWay:
 	flightDeparture = [n.get_text(" ") for n in leftSide.find_all("div",class_="doms-box-threetext") if n.get_text()]
 	flightDuration = [n.get_text(" ") for n in leftSide.find_all("div",class_="doms-box-fouetext") if n.get_text()]
 	flightArrival = [n.get_text(" ") for n in leftSide.find_all("div",class_="doms-box-fivetext") if n.get_text()]
-	flightFare = [n.get_text().replace('\xa0',' ') for n in leftSide.find_all("div",id=re.compile('^FareDetail')) if n.get_text()]
+	flightFare = [n.get_text().encode("ascii", "ignore").decode("utf-8") for n in leftSide.find_all("div",id=re.compile('^FareDetail')) if n.get_text()]
 	flightImages = [n.find('img')['src'] for n in leftSide.find_all("div", class_="doms-box-twotext") if n.find('img')]
 	results[left] = list(zip(flightNums,flightImages,flightDeparture,flightDuration,flightArrival,flightFare))		
 	rightSide = soup.find("div",id="divRTBx") 
@@ -142,7 +151,7 @@ elif roundTrip and not oneWay:
 	flightDeparture = [n.get_text(" ") for n in rightSide.find_all("div",class_="doms-box-threetext") if n.get_text()]
 	flightDuration = [n.get_text(" ") for n in rightSide.find_all("div",class_="doms-box-fouetext") if n.get_text()]
 	flightArrival = [n.get_text(" ") for n in rightSide.find_all("div",class_="doms-box-fivetext") if n.get_text()]
-	flightFare = [n.get_text().replace('\xa0',' ') for n in rightSide.find_all("div",id=re.compile('^FareDetail')) if n.get_text()]
+	flightFare = [n.get_text().encode("ascii", "ignore").decode("utf-8") for n in rightSide.find_all("div",id=re.compile('^FareDetail')) if n.get_text()]
 	flightImages = [n.find('img')['src'] for n in rightSide.find_all("div", class_="doms-box-twotext") if n.find('img')]
 	results[right] = list(zip(flightNums,flightImages,flightDeparture,flightDuration,flightArrival,flightFare))	
 
