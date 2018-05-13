@@ -11,6 +11,10 @@ import Form from 'muicss/lib/react/form';
 import Input from 'muicss/lib/react/input';
 import Button from 'muicss/lib/react/button';
 
+var instance = axios.create({
+	timeout: 1000*60*60*60
+});
+
 
 class App extends Component {
 	constructor(props) {
@@ -33,7 +37,7 @@ class App extends Component {
 	}
 
 	fetchUser() {
-		axios.get('api/user')
+		instance.get('api/user')
 			.then(res => {
 				const user = res.data;
 				// console.log('in api fetchUser:', user);
@@ -48,7 +52,7 @@ class App extends Component {
 				})
 			})
 			.catch(e => {
-				console.log('In axios.get:', e);
+				console.log('In instance.get:', e);
 			})
 	}
 
@@ -72,7 +76,7 @@ class App extends Component {
 		}
 		this.closePopup();
 
-		axios.post('/api/user', data)
+		instance.post('/api/user', data)
 			.then(res => {
 				// console.log('in home post .then:', res)
 				// this.props.fetch(data)
@@ -123,10 +127,7 @@ class App extends Component {
 		data.push(this.state.username, this.state.password);
 		this.props.submit(null, null, data[0], data[1])
 
-		axios.get('/api/submit' + '/' + data, {
-			timeout: 9999999999999,
-			maxContentLength: 9999999999,
-		})
+		instance.get('/api/submit' + '/' + data)
 			.then(res => {
 				// console.log('returned data from Python script in reducer = ', res.data);
 				var flight = res.data;
@@ -167,7 +168,7 @@ class App extends Component {
 	}
 
 	getFlightsTo() {
-		// console.log('in getFlightsTo:', this.props.flightsTo);
+		// console.log('in getFlightsTo:', this.state.multiply);
 		var list = [
 			<li id="label-div" className="collection-item">
 				{this.props.frm + ' to ' + this.props.to}
@@ -186,7 +187,7 @@ class App extends Component {
 							<p>Departure: {el[2]}</p>
 							<p>Flight Duration: {el[3]}</p>
 							<p>Flight Arrival: {el[4]}</p>
-							<p>Flight Fare: <span id='currency'>BDT {parseInt(Number(el[5].substr(4)) * this.state.multiply)}</span></p>
+							<p>Flight Fare: <span id='currency'>BDT {parseInt(Number(el[5].substr(3)) * this.state.multiply)}</span></p>
 						</li>
 					)
 				)
@@ -218,7 +219,7 @@ class App extends Component {
 							<p>Departure: {el[2]}</p>
 							<p>Flight Duration: {el[3]}</p>
 							<p>Flight Arrival: {el[4]}</p>
-							<p>Flight Fare: <span id='currency'>BDT {parseInt(Number(el[5].substr(4)) * this.state.multiply)}</span></p>
+							<p>Flight Fare: <span id='currency'>BDT {parseInt(Number(el[5].substr(3)) * this.state.multiply)}</span></p>
 						</li>
 					)
 				)
