@@ -21,8 +21,6 @@ def read_in():
 lines = read_in()
 data = lines.split(',')
 #---------------------------------------------
-# username = "Rakib"
-# password = "Canon123"
 username = str(data[9])
 password = str(data[10])
 

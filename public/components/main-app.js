@@ -59,7 +59,7 @@ class MainApp extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log('user in main-app:', state.user);
+  // console.log('user in main-app:', state.user);
   return {
     status: state.user.status,
     username: state.user.username,

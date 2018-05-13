@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SUBMIT':
-    console.log('action in reducer-query:', action)
+    // console.log('action in reducer-query:', action)
       return Object.assign({}, state, {
         status: action.status,
         frm: action.frm,

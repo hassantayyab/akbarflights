@@ -36,7 +36,7 @@ class App extends Component {
 		axios.get('api/user')
 			.then(res => {
 				const user = res.data;
-				console.log('in api fetchUser:', user);
+				// console.log('in api fetchUser:', user);
 				if (!user) {
 					this.openPopup();
 				}
@@ -61,7 +61,7 @@ class App extends Component {
 	}
 
 	handleUserSubmit(event, data) {
-		console.log('in handleUserSubmit', data)
+		// console.log('in handleUserSubmit', data)
 		event.preventDefault();
 
 		if (data[0].length < 1 || data[1].length < 1 || data[2] == 0) {
@@ -167,17 +167,15 @@ class App extends Component {
 	}
 
 	getFlightsTo() {
-		console.log('in getFlightsTo:', this.props.flightsTo);
+		// console.log('in getFlightsTo:', this.props.flightsTo);
 		var list = [
 			<li id="label-div" className="collection-item">
 				{this.props.frm + ' to ' + this.props.to}
 			</li>
 		]
 		if (this.props.status == 'empty' || this.props.status == 'loading') {
-			console.log('in if')
 			return null;
 		}
-		console.log('after if')
 		this.props.flightsTo.forEach(element => {
 			{
 				list.push(
@@ -194,7 +192,7 @@ class App extends Component {
 				)
 			}
 		});
-		console.log('list=', list)
+
 		return (
 			<ul className="collection">
 				{list}
@@ -208,10 +206,8 @@ class App extends Component {
 			</li>
 		]
 		if (this.props.status != 'two') {
-			console.log('in flightsFrm if')
 			return null;
 		}
-		console.log('after flightsFrm if')
 		this.props.flightsFrm.forEach(element => {
 			{
 				list.push(
@@ -228,6 +224,7 @@ class App extends Component {
 				)
 			}
 		});
+
 		return (
 			<ul className="collection">
 				{list}
@@ -446,7 +443,7 @@ class App extends Component {
 };
 
 function mapStateToProps(state) {
-	console.log('in mapStateToProps:', state.query.flightsTo);
+	// console.log('in mapStateToProps:', state.query.flightsTo);
 	return {
 		status: state.query.status,
 		frm: state.query.frm,
